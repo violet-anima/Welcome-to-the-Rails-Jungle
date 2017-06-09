@@ -1,0 +1,26 @@
+<article class="line_item">
+
+<tr>
+  <td>
+    <%= image_tag line.product.image.tiny %>
+  </td>
+  <td>
+    <h4><%= line.product.name %></h4>
+    <br>
+    <p><%= line.product.description %></p>
+  </td>
+  <td>
+    <%= line.product.category.name %>
+  </td>
+  <td>
+    <%= line.product.price %>
+  </td>
+  <td>
+    <%= line.quantity %>
+  </td>
+  <td>
+    <%= '%.2f' % (line.total_price_cents / 100.0) %>
+  </td>
+</tr>
+</article>
+
