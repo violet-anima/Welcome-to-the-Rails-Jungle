@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Here's your order confirmation from the Jungle.</h1>
+    <p>
+      Order ID: <%= @order.id %>
+    </p>
+    <p>You bought:</p>
+    <% LineItem.where(order_id: @order.id).each do |line_item| %>
+    <p>
+    <%= " #{line_item.product.name} x#{line_item.quantity} --> $#{'%.2f' % (line_item.total_price_cents / 100)}" %>
+    </p>
+    <% end %>
+    <p>
+      Purchase Total: $<%= '%.2f' % (@order.total_cents / 100) %>
+    </p>
+
+    <p>Thank you for shopping in the Jungle</p>
+  </body>
+</html>
