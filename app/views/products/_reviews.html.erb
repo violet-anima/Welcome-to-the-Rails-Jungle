@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row product-review">
+    <% @sorted_reviews = @reviews.sort {|a, b| b.created_at <=> a.created_at}%>
+    <% @sorted_reviews.each do |review|%>
+      <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3">Review by: <em>Customer <%=review.user.name%></em></div>
+        <div class="col-sm-4">Rating: <%= review.rating %>/5 </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">Description: <%= review.description %> </div>
+        <% if current_user && review.user_id == current_user.id %>
+        <div><%= link_to fa_icon('trash'), [@product, review], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Please Confirm Delete" } %> <div>
+        <% end %>
+      </div>
+      <br>
+    <% end %>
+  </div>
+</div>

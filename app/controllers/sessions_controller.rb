@@ -13,7 +13,8 @@ class SessionsController < ApplicationController
       redirect_to '/'
     else
     # If user's login doesn't work, send them back to the login form.
-      flash[:error] = "Your Login Information is Incorrect!!"
+      session[:error_message] = "Your Login Info is Incorrect, Hipster!!"
+      flash[:error] = "Your Login Info is Incorrect, Hipster!!"
       redirect_to '/login'
     end
   end
