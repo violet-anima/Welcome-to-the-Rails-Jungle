@@ -8,12 +8,12 @@
 
 puts "Seeding Data ..."
 
-# Helper functions
+# Helper functions #
 def open_asset(file_name)
   File.open(Rails.root.join('db', 'seed_assets', file_name))
 end
 
-# Only run on development (local) instances not on production, etc.
+# Only run on development (local) instances not on production, etc. #
 unless Rails.env.development?
   puts "Development seeds only (for now)!"
   exit 0
@@ -21,7 +21,7 @@ end
 
 # Let's do this ...
 
-## CATEGORIES
+## CATEGORIES ##
 
 puts "Finding or Creating Categories ..."
 
@@ -29,7 +29,7 @@ cat1 = Category.find_or_create_by! name: 'Apparel'
 cat2 = Category.find_or_create_by! name: 'Electronics'
 cat3 = Category.find_or_create_by! name: 'Furniture'
 
-## PRODUCTS
+## PRODUCTS ##
 
 puts "Re-creating Products ..."
 
@@ -132,5 +132,18 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+
+## SAMPLE REVIEWS ##
+
+puts "Bring forth your inner Roger Ebert..."
+
+Review.create(product_id: 1, user_id: 1, description: 'Excellent', rating: 5)
+Review.create(product_id: 2, user_id: 1, description: 'Waste of money', rating: 1)
+Review.create(product_id: 3, user_id: 1, description: 'Great', rating: 4)
+Review.create(product_id: 4, user_id: 1, description: 'Eeeeek!!', rating: 2)
+Review.create(product_id: 5, user_id: 1, description: 'Not for me.', rating: 3)
+Review.create(product_id: 1, user_id: 1, description: 'The answer to everything you've ever wanted your whole life, rating: 5)
+Review.create(product_id: 2, user_id: 1, description: 'You can get better at walmart', rating: 3)
+Review.create(product_id: 3, user_id: 1, description: 'Worse than a skinrash', rating: 1)
 
 puts "DONE!"
