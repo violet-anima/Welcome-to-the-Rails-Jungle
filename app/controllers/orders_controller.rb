@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
     order  = create_order(charge)
 
     if order.valid?
-      # email notification goes to user
       UserMailer.order_confirmation_email(order).deliver_later
 
       empty_cart!
