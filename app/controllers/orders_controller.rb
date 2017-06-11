@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
     order  = create_order(charge)
 
     if order.valid?
-      UserMailer.order_confirmation_email(order).deliver_later
+      UserMailer.order_confirmation_email(order).deliver_now if current_user
 
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'
@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
 
   def create_order(stripe_charge)
     order = Order.new(
-      email: 'melanieoh888@gmail.com',
+      email: current_user.try(:email),
       total_cents: cart_total,
       stripe_charge_id: stripe_charge.id, # returned by stripe
     )

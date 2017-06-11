@@ -5,7 +5,7 @@
   </header>
 
   <div class="order-summary jumbotron">
-      <h4>Thank you for your order <%= current_user.name %>! <br/><br/>
+      <h4>Thank you for your order <%= current_user.try(:name) %>! <br/><br/>
   </div>
 
 
@@ -34,7 +34,9 @@
     </tbody>
   </table>
 
-  <p> Order was placed using: <%= @order.email%> </p>
+  <% if current_user %>
+    <p> Order was placed using: <%= @order.email%> </p>
+  <% end %>
 
 
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>

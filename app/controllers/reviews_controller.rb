@@ -4,14 +4,12 @@ class ReviewsController < ApplicationController
 
   def create
     @product = Product.find(params[:product_id])
-    @review = Review.new(product_id: params[:product_id],
-                         user: current_user,
-                         description: params[:review]['description'],
-                         rating: params[:review]['rating'])
+    @review  = Review.new review_params.merge(user_id: current_user.id, product_id: @product.id)
+
     if @review.save
-      redirect_to "/products/#{params[:product_id]}", notice: 'Your review was saved.'
+      redirect_to @product, notice: 'Your review was saved.'
     else
-      redirect_to "/products/#{params[:product_id]}", notice: 'Your review was not saved'
+      redirect_to @product, notice: 'Your review was not saved'
     end
   end
 
@@ -25,7 +23,13 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find params[:id]
     @review.destroy
-    redirect_to '/'
+
+    redirect_to root_path
   end
 
+  private
+
+    def review_params
+      params.require(:review).permit(:rating, :description)
+    end
 end
