@@ -137,12 +137,12 @@ cat3.products.create!({
 
 puts "Bring forth your inner Roger Ebert..."
 
-Review.create(product_id: 1, user_id: 1, description: 'Excellent', rating: 5)
-Review.create(product_id: 2, user_id: 1, description: 'Waste of money', rating: 1)
+Review.create(product_id: 10, user_id: 1, description: 'Excellent', rating: 5)
+Review.create(product_id: 9, user_id: 1, description: 'Waste of money', rating: 1)
 Review.create(product_id: 3, user_id: 1, description: 'Great', rating: 4)
 Review.create(product_id: 4, user_id: 1, description: 'Eeeeek!!', rating: 2)
 Review.create(product_id: 5, user_id: 1, description: 'Not for me.', rating: 3)
-Review.create(product_id: 1, user_id: 1, description: 'The answer to everything you have ever wanted your whole life', rating: 5)
+Review.create(product_id: 11, user_id: 1, description: 'The answer to everything you have ever wanted your whole life', rating: 5)
 Review.create(product_id: 2, user_id: 1, description: 'You can get better at walmart', rating: 3)
 Review.create(product_id: 3, user_id: 1, description: 'Worse than a skinrash', rating: 1)
 
